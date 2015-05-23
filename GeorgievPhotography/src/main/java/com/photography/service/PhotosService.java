@@ -6,13 +6,14 @@ import java.util.List;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.photography.dao.Album;
 import com.photography.dao.Photo;
 import com.photography.dao.PhotosDao;
 import com.photography.utilities.ImageReaderWithTitle;
 
-@WebService
+@Service
 public class PhotosService {
 
 	@Autowired
