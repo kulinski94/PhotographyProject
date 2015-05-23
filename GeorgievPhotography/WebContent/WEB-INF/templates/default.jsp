@@ -8,8 +8,9 @@
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 
 <!-- Bootstrap Core CSS -->
-<link
-	href="${pageContext.request.contextPath}/static/css/bootstrap.min.css"
+
+	<link
+	href="${pageContext.request.contextPath}/static/css/bootstrap.css"
 	rel="stylesheet">
 
 <!-- Custom CSS -->
@@ -23,7 +24,7 @@
 	src="${pageContext.request.contextPath}/static/script/bootstrap.js"></script>
 
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/static/script/bootstrap.js"></script>
+	src="${pageContext.request.contextPath}/static/script/jquery.js"></script>
 
 
 <script type="text/javascript"
