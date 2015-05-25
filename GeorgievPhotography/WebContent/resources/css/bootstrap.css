@@ -6594,10 +6594,10 @@ input[class=checkbox] {
 - position: relative; will ensure that any position: absolute children will position themselves in relation to it
 */
 input[class=checkbox] + label {
-  height: 350px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   display: block;
-  border-radius: 50%;
+  border-radius: 0%;
   position: relative;
   transition: all 0.4s;
   border: solid 5px #FFF;

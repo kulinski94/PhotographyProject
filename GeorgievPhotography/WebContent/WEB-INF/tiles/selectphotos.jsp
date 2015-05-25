@@ -8,39 +8,32 @@
 	Has no photos
 </c:if>
 	<c:if test="${photos.size() > 0}">
-Not selected photos 
-	<sf:form class="form-horizontal" commandName="order"
+		<sf:form class="form" commandName="order"
 			action="${pageContext.request.contextPath}/submitphotos">
-			<table class="photos">
-				<thead>
-					<tr>
-						<td>PHOTO</td>
-					</tr>
-				</thead>
-				<tbody>
+			<h3>Select your photos then submit</h3>
+			<p>
+				<button type="button" class="btn btn-primary btn-lg" onclick="checkForSelectedIds()">Submit
+					photos</button>
+			</p>
+			<c:forEach var="photo" items="${photos}">
+				<c:if test="${!photo.selected}">
+					<div class="col-md-4">
+						<input id="${photo.id}" type="checkbox" class="checkbox"
+							value="${photo.id}" /><label for="${photo.id}"
+							style="background: url(${photo.url}) no-repeat"
+							onclick="select(${photo.id})"> </label>
+						<sf:checkbox path="selectedIds" value="${photo.id}"
+							id="sf${photo.id}" />
+						<sf:errors path="selectedIds">
 
-					<c:forEach var="photo" items="${photos}">
-						<c:if test="${!photo.selected}">
-							<tr>
-								<td><input id="${photo.id}" type="checkbox" class="checkbox"
-									value="${photo.id}"  /><label
-									for="${photo.id}" style="background: url(${photo.url})" onclick="select(${photo.id})">
-								</label></td>
-								<td><sf:checkbox path="selectedIds" value="${photo.id}"
-										id="sf${photo.id}"/></td>
-							</tr>
-							<sf:errors path="selectedIds">
-							</sf:errors>
-						</c:if>
-					</c:forEach>
-				<thead>
-			</table>
-			<button type="submit" class="btn btn-default">Select photos</button>
+						</sf:errors>
+					</div>
+				</c:if>
+			</c:forEach>
 		</sf:form>
-
 	</c:if>
-
-	<script type="text/javascript">
+</div>
+<script type="text/javascript">
 		function select(id) {
 			var remember = document.getElementById(id);
 			if (remember.checked) {
@@ -48,5 +41,23 @@ Not selected photos
 			} else {
 				document.getElementById("sf"+id).checked = true;
 			}
+		}
+	</script>
+<script type="text/javascript">
+		function checkForSelectedIds() {
+			var order = document.getElementById("order");
+			var checkboxes = order.getElementsByClassName("checkbox");
+			var noOneIsChecked = true;
+			for (i = 0; i < checkboxes.length; i++) { 
+			    if(checkboxes[i].checked){
+			    	noOneIsChecked = false;
+			    	break;
+			    }
+			}
+			if(noOneIsChecked){
+				alert("You must select at least one photo");
+			}else{
+				order.submit();
+			}	
 		}
 	</script>
